@@ -3,7 +3,9 @@
 ## Description
 This project involves building a self-drviing robot using a Raspberri Pi 5 for AI-based control and an Arduino for motor management. The robot is designed to navigate autonomously using a PI camera module and computer vision techniques.
 
+
 ## Components
+
 - **Raspberry Pi 5**: Main control unit for AI processing and camera input handling
 - **Arduino**: Responsible for motor control and interfacing with sensors.
 - **PI Camera Module**: Captures real-time images for processing for collision detection and avoidance.
