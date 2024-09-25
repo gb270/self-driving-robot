@@ -24,4 +24,4 @@ and follow the instructions given.
 More in-depth instructions and a guide for reproducing this entire project will be added shortly.
 
 ## License
-This project is licensed under the GNU GPL. See the [LICENSE](License) file for more details. 
+This project is licensed under the GNU GPL. See the [License](LICENSE) file for more details. 
