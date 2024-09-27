@@ -50,6 +50,9 @@ def turn_robot_right():
 def move_robot_forward():
     send_command_to_arduino('F')
 
+def move_robot_backward():
+    send_command_to_arduino('B')
+
 def stop_robot():
     # currently arduino has no command to change this
     # can potentially modify but at the moment we just send commands
@@ -102,22 +105,22 @@ def app_callback(pad, info, user_data):
         bbox = detection.get_bbox()
         confidence = detection.get_confidence()
 
+        # Get bounding box coordinates
+        x_min = int(bbox.xmin() * width)
+        y_min = int(bbox.ymin() * height)
+        x_max = int(bbox.xmax() * width)
+        y_max = int(bbox.ymax() * height)
+
+        # Calculate the center of the bounding box
+        x_center = (x_min + x_max) // 2
+        y_center = (y_min + y_max) // 2
+        
+        # Print detection info
+        string_to_print += (f"Detection: {label} {confidence:.2f}\n")
+        string_to_print += (f"Bounding box: ({x_min}, {y_min}), ({x_max}, {y_max})\n")
+        string_to_print += (f"Object center: ({x_center}, {y_center})\n")
+
         if label == "person":
-            # Get bounding box coordinates
-            x_min = int(bbox.xmin() * width)
-            y_min = int(bbox.ymin() * height)
-            x_max = int(bbox.xmax() * width)
-            y_max = int(bbox.ymax() * height)
-
-            # Calculate the center of the bounding box
-            x_center = (x_min + x_max) // 2
-            y_center = (y_min + y_max) // 2
-
-            # Print detection info
-            string_to_print += (f"Detection: {label} {confidence:.2f}\n")
-            string_to_print += (f"Bounding box: ({x_min}, {y_min}), ({x_max}, {y_max})\n")
-            string_to_print += (f"Object center: ({x_center}, {y_center})\n")
-
             # Control robot based on object position
             if x_center < width / 3:
                 turn_robot_left()
@@ -125,6 +128,18 @@ def app_callback(pad, info, user_data):
                 turn_robot_right()
             else:
                 move_robot_forward()
+        
+        # Avoid any other detected objects
+        else:
+            if x_center < width / 3:
+                # Object is on the left side; turn right to avoid it
+                turn_robot_right()
+            elif x_center > 2 * width / 3:
+                # Object is on the right side; turn left to avoid it
+                turn_robot_left()
+            else:
+                # Object is in the center; move backward or adjust as necessary
+                move_robot_backward()
 
     print(string_to_print)
     return Gst.PadProbeReturn.OK
