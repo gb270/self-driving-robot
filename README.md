@@ -24,5 +24,7 @@ For manual control: after cloning the repo and setting up correctly run:
 and follow the instructions given.
 More in-depth instructions and a guide for reproducing this entire project will be added shortly.
 
+*venv_hailo_rpi5_examples* (the python venv that contains the neccessary python libraries can be found by following this [guide](https://github.com/hailo-ai/hailo-rpi5-examples/blob/main/doc/basic-pipelines.md#installation))
+
 ## License
 This project is licensed under the GNU GPL. See the [License](LICENSE) file for more details. 
