@@ -45,7 +45,7 @@ Alternatively, for manual control: after cloning the repo run:
 
     python3 test.py
 
-and follow the instructions
+and follow the instructions.
 
 ## License
 This project is licensed under the GNU GPL. See the [License](LICENSE) file for more details. 
