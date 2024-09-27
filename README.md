@@ -42,7 +42,7 @@ To run the object detection (robot will go towards people and avoid other object
 
 
 Alternatively, for manual control: after cloning the repo run:
-    ``` bash
+
     python3 test.py
 
 and follow the instructions
