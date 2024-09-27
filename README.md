@@ -5,7 +5,7 @@ This project involves building a self-drviing robot using a Raspberri Pi 5 for A
 
 ## Components
 - **Raspberry Pi 5**: Main control unit for AI processing and camera input handling
-- **hailo 8L AI accelerator**: AI accelerator to run efficient inference.
+- **Hailo 8L AI accelerator**: AI accelerator to run efficient inference.
 - **Arduino**: Responsible for motor control and interfacing with sensors.
 - **PI Camera Module**: Captures real-time images for processing for collision detection and avoidance.
 - **Motor Driver**: Controls robot movement.

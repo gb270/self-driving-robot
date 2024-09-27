@@ -54,10 +54,7 @@ def move_robot_backward():
     send_command_to_arduino('B')
 
 def stop_robot():
-    # currently arduino has no command to change this
-    # can potentially modify but at the moment we just send commands
-    # to move forward a few seconds at a time
-    print("robot should stop")
+    send_command_to_arduino('S')
 
 
 # -----------------------------------------------------------------------------------------------
@@ -98,6 +95,9 @@ def app_callback(pad, info, user_data):
     # Get the detections from the buffer
     roi = hailo.get_roi_from_buffer(buffer)
     detections = roi.get_objects_typed(hailo.HAILO_DETECTION)
+
+    # Flag to check if any valid detections were found
+    any_detection = False
 
     # Parse the detections
     for detection in detections:
@@ -140,6 +140,10 @@ def app_callback(pad, info, user_data):
             else:
                 # Object is in the center; move backward or adjust as necessary
                 move_robot_backward()
+    
+    # stopping robot if nothing found
+    if not any_detection:
+        stop_robot()
 
     print(string_to_print)
     return Gst.PadProbeReturn.OK

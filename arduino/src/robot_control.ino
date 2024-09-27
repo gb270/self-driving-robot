@@ -174,6 +174,52 @@ int get_distance() {
   }
 }
 
+const int MOVE_SPEED = 100;
+void handleMovement(char command) {
+  switch (command) {
+    case 'F':
+      Serial.println("Moving Forward");
+      car_forward(MOVE_SPEED);
+      break;
+    case 'B':
+      Serial.println("Moving Backwards");
+      car_reverse(MOVE_SPEED);
+      break;
+    case 'L':
+      Serial.println("Moving Left");
+      car_left(MOVE_SPEED);
+      break;
+    case 'R':
+      Serial.println("Moving Right");
+      car_right(MOVE_SPEED);
+      break;
+    case 'Q':
+      Serial.println("Moving Forward Left");
+      car_forward_left(MOVE_SPEED);
+      break;
+    case 'E':
+      Serial.println("Moving Forward Right");
+      car_forward_right(MOVE_SPEED);
+      break;
+    case 'A':
+      Serial.println("Moving Backward Left");
+      car_backward_left(MOVE_SPEED);
+      break;
+    case 'D':
+      Serial.println("Moving Backward Right");
+      car_backward_right(MOVE_SPEED);
+      break;
+    case 'S':
+      Serial.println("Stopping");
+      car_stop();
+      break;
+    default:
+      Serial.println("Unknown command");
+      return; 
+  }
+  delay(500); 
+  car_stop(); 
+}
 
 
 void setup() {
@@ -198,70 +244,11 @@ M4: Rear-Right
 */
 void loop() {
   
-  // communication with RPI 5
+  // Communication with RPI 5
   if (Serial.available() > 0) {
     char command = Serial.read();
-
-    // Forward
-    if (command == 'F') {
-      Serial.println("Moving Forward");
-      car_forward(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Reverse
-    if (command == 'B') {
-      Serial.println("Moving Backwards");
-      car_reverse(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Left
-    if (command == 'L') {
-      Serial.println("Moving Left");
-      car_left(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Right
-    if (command == 'R') {
-      Serial.println("Moving Right");
-      car_right(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Forward left
-    if (command == 'Q') {
-      car_forward_left(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Forward right
-    if (command == 'E') {
-      car_forward_right(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Backward left
-    if (command == 'A') {
-      car_backward_left(100);
-      delay(500);
-      car_stop();
-    }
-
-    // Backward right
-    if (command == 'D') {
-      car_backward_right(100);
-      delay(500);
-      car_stop();
-    }
-
+    handleMovement(command);
   }
+
 
 }

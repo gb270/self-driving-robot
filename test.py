@@ -13,6 +13,7 @@ Q: Forward Left
 E: Forward Right
 A: Backward Left
 D: Backward Right
+S: Stop
 
 X: Exit program
 """
