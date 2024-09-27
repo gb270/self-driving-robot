@@ -175,6 +175,7 @@ int get_distance() {
 }
 
 const int MOVE_SPEED = 100;
+
 void handleMovement(char command) {
   switch (command) {
     case 'F':
@@ -249,6 +250,5 @@ void loop() {
     char command = Serial.read();
     handleMovement(command);
   }
-
 
 }
