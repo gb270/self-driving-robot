@@ -37,13 +37,11 @@ This project involves building a self-drviing robot using a Raspberri Pi 5 for A
 
 To run the object detection (robot will go towards people and avoid other objects) run the following commands:
     
-    ```bash
     cd raspberry-pi/
     python instance_segmentation.py --input rpi
 
 
 Alternatively, for manual control: after cloning the repo run:
-    
     ``` bash
     python3 test.py
 
